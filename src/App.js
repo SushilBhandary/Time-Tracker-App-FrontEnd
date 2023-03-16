@@ -1,10 +1,18 @@
-
+import LandingPage from "./components/landingPage";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/login";
+import Signup from "./components/signup";
 
 function App() {
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"  element={<LandingPage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
