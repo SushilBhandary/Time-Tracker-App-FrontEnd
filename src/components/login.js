@@ -1,6 +1,5 @@
 import { useState } from "react"
 import axios from "axios"
-// import PostPage from "./PostPage";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
@@ -9,10 +8,8 @@ import API from "./api";
 
 const Login = () => {
 
-  const [islogin, SetLogin] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [posts, setPosts] = useState([])
   const navigate = useNavigate();
 
   const submit = async(e) => {
@@ -33,30 +30,11 @@ const Login = () => {
       email : email, 
       password : password
     }
-    await axios.post(`${API}/login`,data)
+    await axios.post(`${API}/api/auth/login`,data)
     .then(async(res) => {
       localStorage.setItem("jwt", JSON.stringify(res.data))
-      await axios.get(`${API}/get-post`, {
-        headers: {
-          authorization: res.data.token
-        }
-      })
-      .then( (res) => {
-        setPosts( res.data.posts)
-        SetLogin(true)
-      })
-      .catch( e => toast.error(e.response.data.error, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        })
-      )
-      SetLogin(true)
+      console.log(res.data);
+      navigate('/home')
     }).catch( e => 
       toast.error(e.response.data.error, {
         position: "top-center",
@@ -69,12 +47,6 @@ const Login = () => {
         theme: "colored",
         })
       )
-  }
-
-  const logout = () => {
-    SetLogin(false)
-    setEmail('')
-    setPassword('')
   }
 
   return(

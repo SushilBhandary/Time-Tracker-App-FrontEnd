@@ -56,7 +56,7 @@ const Signup = () =>{
       email : email, 
       password : password
     }
-    await axios.post(`${API}/signup`,data)
+    await axios.post(`${API}/api/auth/signup`,data)
     .then( (res, err) => {
       if (res) {
         toast.success('User Created Successfully', {
