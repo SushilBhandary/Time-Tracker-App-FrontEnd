@@ -73,6 +73,9 @@ const Signup = () =>{
           setEmail('')
           setPassword('')
           setRePassword('')
+          setTimeout(function(){
+            navigate("/login")
+         }, 4000);
       }
     })
     .catch(e => toast.error(e.response.data.error, {
