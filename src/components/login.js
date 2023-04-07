@@ -33,9 +33,9 @@ const Login = () => {
     await axios.post(`${API}/api/auth/login`,data)
     .then(async(res) => {
       localStorage.setItem("jwt", JSON.stringify(res.data))
-      console.log(res.data);
       navigate('/home')
-    }).catch( e => 
+    })
+    .catch( e => 
       toast.error(e.response.data.error, {
         position: "top-center",
         autoClose: 5000,
