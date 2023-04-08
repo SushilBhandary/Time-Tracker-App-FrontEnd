@@ -10,6 +10,7 @@ const Header = ({onDate, setOnDate}) => {
   const user = useContext(UserContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [date, setdate] = useState()
 
   const logout = async(e) => {
     e.preventDefault()
@@ -33,15 +34,17 @@ const Header = ({onDate, setOnDate}) => {
 
   const changeDate = (e) => {
     e.preventDefault()
+    setOpen(false)
+    setOnDate(date)
   }
 
   return (
     <div className="bg-cyan-500 w-[25vw] h-[90vh] rounded-lg flex flex-col justify-around items-center text-2xl">
         <div>
           <div class="relative md:w-36 md:h-36 w-12 h-12 bg-gradient-to-r from-[#833ab4] to-[#1dc0fd] rounded-full flex justify-center items-center text-center p-5 shadow-xl mr-4 md:text-4xl  text-xl text-white ">
-            {user.name}
+            {user.name[0]}
           </div>
-          <h1 className="text-center"> UserName </h1>
+          <h1 className="text-center"> {user.name} </h1>
         </div>
         <button className="py-3 px-5 bg-blue-500 rounded-lg" onClick={e => setOpen(!open) }>Change Date</button>
         <button className="py-3 px-5 bg-blue-500 rounded-lg">Report Genrate</button>
@@ -54,7 +57,7 @@ const Header = ({onDate, setOnDate}) => {
               <h2 className="w-full text-3xl font-bold leading-tight">Edit Date</h2>
               <div>
                   <label className="block mb-1 ml-1">Select Date</label>
-                  <input type="date"  className="block w-full p-2 rounded border-2 bg-[#8de0ff]"  onChange={e => setOnDate(e.target.value)}/ >
+                  <input type="date"  className="block w-full p-2 rounded border-2 bg-[#8de0ff]"  onChange={e => setdate(e.target.value)}/ >
               </div>
               <div className="text-right">
                   <button onClick={e => changeDate(e)}  className=" px-4 py-2 font-bold rounded shadow text-white bg-blue-500 focus:outline-none hover:bg-blue-600 ">Change Date</button>
