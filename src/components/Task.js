@@ -96,7 +96,7 @@ const Task = ({onDate}) => {
   const save  = async(e) => {
     e.preventDefault()
     const data = JSON.parse(localStorage.getItem("jwt"))
-    await axios.put(`${API}/api/updateAction/${taskData._id}`, {
+    await axios.put(`${API}/api/task/updateaction/${taskData._id}`, {
       action
     }, {
       headers: {
@@ -106,6 +106,16 @@ const Task = ({onDate}) => {
     .then(async(res) => {
       setTaskData(res.data.task)
       setAction(res.data.task.action)
+      toast.success('Saved Successfully', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
     })
     .catch( e => 
       toast.error(e.response.data.error, {
@@ -124,7 +134,7 @@ const Task = ({onDate}) => {
   const saveDescription = async(e) => {
     e.preventDefault()
     const data = JSON.parse(localStorage.getItem("jwt"))
-    await axios.put(`${API}/api/updatetask/${taskData._id}`, {
+    await axios.put(`${API}/api/task/updatetask/${taskData._id}`, {
       why,
       feel
     }, {
@@ -133,8 +143,21 @@ const Task = ({onDate}) => {
       }
     })
     .then(async(res) => {
+      toast.success('Saved Successfully', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
       setTaskData(res.data.task)
       setAction(res.data.task.action)
+      setOpen(false)
+      setFeel(true)
+      setWhy('')
     })
     .catch( e => 
       toast.error(e.response.data.error, {
