@@ -38,6 +38,10 @@ const Header = ({onDate, setOnDate}) => {
     setOnDate(date)
   }
 
+  const reportPage = (e) => {
+    navigate('/report')
+  }
+
   return (
     <div className="bg-cyan-500 w-[25vw] h-[90vh] rounded-lg flex flex-col justify-around items-center text-2xl">
         <div>
@@ -47,7 +51,7 @@ const Header = ({onDate, setOnDate}) => {
           <h1 className="text-center"> {user.name} </h1>
         </div>
         <button className="py-3 px-5 bg-blue-500 rounded-lg" onClick={e => setOpen(!open) }>Change Date</button>
-        <button className="py-3 px-5 bg-blue-500 rounded-lg">Report Genrate</button>
+        <button className="py-3 px-5 bg-blue-500 rounded-lg" onClick={e => reportPage(e)}>Report Genrate</button>
         <button className="py-3 px-5 bg-blue-500 rounded-lg" onClick={e => logout(e)}>LogOut</button>
         <Popup open={open}  modal nested>
           <form className=" text-lg container p-8 space-y-6 rounded-md shadow  bg-gradient-to-r from-[#833ab4] to-[#1dc0fd] ">
